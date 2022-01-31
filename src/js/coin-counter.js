@@ -3,13 +3,33 @@
 //NO UI, focus on tests and Good functional code
 export default class CoinCounter{
   constructor(){}
+  //1.55
   calculateChange(number){
-    
+    if(isNaN(number)){
+      return "not a number"
+    }
+    if(number == 0)
+    {
+      return "";
+    }
+    if(number >= 0.25)
+    {
+      const quarters = Math.floor(number/.25);
+      const remaining = number - (quarters *.25);
+      return `Quarters: ${quarters}`;
+    }
   }
 }
-{
-  "quaters", 3;
-  "nickels", 2;
-  "dimes", 2;
-  "pennies", 0;
+
+/*
+const incrementCounter = (counter) => {
+  if (counter >= 3) {
+    return counter;
+  } else {
+    console.log(counter);
+    return incrementCounter(counter + 1);
+  }
 }
+
+incrementCounter(0);
+*/
