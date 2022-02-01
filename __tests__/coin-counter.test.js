@@ -1,40 +1,34 @@
 import { TestWatcher } from "jest";
-import CoinCounter from "../src/js/coin-counter";
+import calculateChange from "../src/js/coin-counter";
 
-describe('CoinCounter', () => {
-
-  let coinCounter;
-  beforeEach(() => {
-    coinCounter = new CoinCounter();
-  });
-
-  test("should create a coinCounter object", () => {
-    const coinCounter1 = new CoinCounter();
-    expect(coinCounter1).toBeInstanceOf(CoinCounter);
-  });
-
+describe('calculateChange', () => {
   test("calculateChange should take a number and return a string", () =>{
-    const myChange =  coinCounter.calculateChange(0);
+    const myChange =  calculateChange(0);
     expect(myChange).toEqual("");
   });
 
-  test("calculateChange should return a string with the number of quarters", () =>{
-    const myChange =  coinCounter.calculateChange(1.25);
-    expect(myChange).toEqual("Quarters: 5");
+  test("calculateChange should return nothing if a non number is passed in", () =>{
+    const myChange =  calculateChange("blah");
+    expect(myChange).toEqual();
   });
 
-  test("calculateChange should return not a number if a non number is passed in", () =>{
-    const myChange =  coinCounter.calculateChange("blah");
-    expect(myChange).toEqual("not a number");
+  test("calculateChange should return a string with the number of quarters", () =>{
+    const myChange =  calculateChange(1.25);
+    expect(myChange).toEqual("Quarters: 5,");
   });
 
   test("calculateChange should return dimes after quarters", () =>{
-    const myChange =  coinCounter.calculateChange(1.30);
-    expect(myChange).toEqual("Quarters: 5, Dimes: 1");
+    const myChange =   calculateChange(1.35);
+    expect(myChange).toEqual("Quarters: 5, Dimes: 1,");
+  });
+
+  test("calculateChange should return nickels after dimes", () =>{
+    const myChange =  calculateChange(1.40);
+    expect(myChange).toEqual("Quarters: 5, Dimes: 1, Nickels: 1,");
+  });
+
+  test("calculateChange should return pennies after nickels", () =>{
+    const myChange =  calculateChange(1.42);
+    expect(myChange).toEqual("Quarters: 5, Dimes: 1, Nickels: 1, Pennies: 2");
   });
 });
-
-//expect.objectContaining(object)
-/*
-
-*/
