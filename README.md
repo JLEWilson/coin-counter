@@ -1,6 +1,6 @@
 # _{Application Name}_
 
-#### By _**Matt C.**_
+#### By _*Jacob Wilson, Albert Lee**_
 
 #### _{Brief description of application}_
 
